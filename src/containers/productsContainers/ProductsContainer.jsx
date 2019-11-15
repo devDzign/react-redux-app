@@ -5,20 +5,6 @@ import {productsListFetch} from '../../stores/actions/actions'
 import './products.css';
 import Pagination from "../../components/paginator/Pagination";
 
-
-const mapStateToProps = (state) => {
-    return {
-        ...state.rootListProductsReducer
-    }
-}
-
-const mapDispatchToProps = {
-    productsListFetch
-}
-
-
-
-
 class ProductsContainer extends Component {
 
     state = {
@@ -136,6 +122,18 @@ class ProductsContainer extends Component {
             </div>
         );
     }
+}
+
+
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.rootListProductsReducer
+    }
+}
+
+const mapDispatchToProps = {
+    productsListFetch
 }
 
 export default connect(
