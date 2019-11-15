@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setAuthentication} from "../../stores/actions/actions";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -19,10 +19,10 @@ class NavBar extends Component {
     }
     renderLinkAuth = () => {
         return (!this.state.isAuth ? <>
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <a className="nav-link" href="#">Inscription</a>
                     </li>
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <a className="nav-link" onClick={this.handleLogged}>Login</a>
                     </li>
                 </> :
@@ -46,8 +46,16 @@ class NavBar extends Component {
 
                     <div className="collapse navbar-collapse" id="navbarColor01">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <Link className="nav-link" to="/products">Home</Link>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/" exact activeClassName={"active"}>
+                                    Home
+                                </NavLink>
+                            </li>
+
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/products"  exact activeClassName={"active"}>
+                                    Products
+                                </NavLink>
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">

@@ -95,7 +95,7 @@ class ProductsContainer extends Component {
 
             const renderWithPaginator = <>
                 {productsCards}
-                <div className={"col-12"}>
+                <div className="col-12 justify-content-md-center">
                     <Pagination
                         currentPage={this.state.currentPage}
                         itemsPerPage={this.state.itemsPerPage}
