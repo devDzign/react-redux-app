@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setAuthentication} from "../../stores/actions/actions";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -18,18 +18,18 @@ class NavBar extends Component {
         )
     }
     renderLinkAuth = () => {
-        return (!this.state.isAuth ? <>
+        return (!this.props.isAuth ? <>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Inscription</a>
+                        <NavLink className="nav-link" to="/">Inscription</NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" onClick={this.handleLogged}>Login</a>
+                        <NavLink className="nav-link" to="/login" activeClassName="active" exact>Login</NavLink>
                     </li>
                 </> :
                 <li className="nav-item">
-                    <a className="nav-link" onClick={this.handleLogged}>
+                    <NavLink className="nav-link" to="/logout">
                         Logout
-                    </a>
+                    </NavLink>
                 </li>
         )
     }
@@ -38,7 +38,7 @@ class NavBar extends Component {
         return (
             <>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <NavLink className="navbar-brand" to="/">Navbar</NavLink>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -52,11 +52,13 @@ class NavBar extends Component {
                                 </NavLink>
                             </li>
 
-                            <li className="nav-item">
+                            {this.props.isAuth && <li className="nav-item">
                                 <NavLink className="nav-link" to="/products"  exact activeClassName={"active"}>
                                     Products
                                 </NavLink>
-                            </li>
+                            </li> }
+
+
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             {this.renderLinkAuth()}
