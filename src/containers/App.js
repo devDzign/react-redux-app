@@ -7,6 +7,7 @@ import NavBar from "./headers/NavBar";
 import HomePage from "./HomePage/HomePage";
 import LoginContainer from "./securityContainer/LoginContainer";
 import ProductContainer from "./productsContainers/ProductContainer";
+import LogoutContainer from "./securityContainer/LogoutContainer";
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
                             <Route exact path="/products" component={RequireAuthentication(ProductsContainer)}/>
                             <Route exact path="/products/:id" component={RequireAuthentication(ProductContainer)}/>
                             <Route exact path="/login" component={LoginContainer}/>
+                            <Route exact path="/logout" component={LogoutContainer}/>
                             <Route render={()=> <h1>Not Found 404 </h1>}/>
                         </Switch>
                     </div>

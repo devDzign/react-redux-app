@@ -44,3 +44,11 @@ export const loginFetch = ({username, password}, history) => {
     }
 }
 
+
+export const logoutFetch = () => {
+
+    return async (dispatch) => {
+        const response = await authAPI.logout()
+             dispatch(setAuthentication(false))
+    }
+}

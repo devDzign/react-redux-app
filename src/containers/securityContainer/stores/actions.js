@@ -1,4 +1,5 @@
 export {
     loginFetch,
-    setAuthentication
+    setAuthentication,
+    logoutFetch
 } from './security'
