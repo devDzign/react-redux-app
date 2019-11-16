@@ -45,7 +45,7 @@ class ProductsContainer extends Component {
             )
         } else if (products) {
             const productsCards = products.map(product => {
-                return <ProductCard product={product}/>
+                return <ProductCard product={product} key={product.id}/>
 
             })
 

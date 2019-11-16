@@ -5,6 +5,11 @@ function findAll(itemsPerPage=6,currentPage=1) {
     return axios.get(`${API_PRODUCTS}?pagination=true&count=${itemsPerPage}&page=${currentPage}`);
 }
 
+function findOneById(id) {
+    return axios.get(`${API_PRODUCTS}/${id}`);
+}
+
 export default {
-    findAll
+    findAll,
+    findOneById
 };

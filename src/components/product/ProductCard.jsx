@@ -7,7 +7,7 @@ const ProductCard = ({product}) => {
 
     return (
         <>
-            <div className={"col-4"} key={product.id} >
+            <div className={"col-4"}>
 
                 <div className="card border-primary mb-3 flex-fill card-header-app" >
                     <div className="card-header">{product.title.substr(0, 30)}... - {product.id}</div>
