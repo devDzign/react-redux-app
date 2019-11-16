@@ -6,6 +6,7 @@ import ProductsContainer from "./productsContainers/ProductsContainer";
 import NavBar from "./headers/NavBar";
 import HomePage from "./HomePage/HomePage";
 import LoginContainer from "./securityContainer/LoginContainer";
+import ProductContainer from "./productsContainers/ProductContainer";
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/" component={HomePage}/>
                             <Route exact path="/products" component={RequireAuthentication(ProductsContainer)}/>
+                            <Route exact path="/products/:id" component={RequireAuthentication(ProductContainer)}/>
                             <Route exact path="/login" component={LoginContainer}/>
                             <Route render={()=> <h1>Not Found 404 </h1>}/>
                         </Switch>
