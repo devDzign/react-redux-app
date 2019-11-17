@@ -4,6 +4,10 @@ export const LOGIN_RECEIVED = 'LOGIN_RECEIVED';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 
+export const USER_REQUEST = 'USER_REQUEST';
+export const USER_RECEIVED = 'USER_RECEIVED';
+export const USER_ERROR = 'USER_ERROR';
+
 
 
 

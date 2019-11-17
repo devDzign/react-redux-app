@@ -1,5 +1,6 @@
 import * as actionType from "./actionTypes";
 import authAPI from "../../../services/authAPI";
+import userAPI from "../../../services/usersAPI";
 
 export const setAuthentication = (isLoggedIn) => {
 
@@ -25,7 +26,7 @@ export const loginError = (error) => ({
 })
 
 export const loginReceive = (response) => ({
-    type: actionType.LOGIN_RECEIVED
+    type: actionType.USER_RECEIVED
 })
 
 
@@ -34,8 +35,10 @@ export const loginFetch = ({username, password}, history) => {
     return async (dispatch) => {
         try {
             dispatch(loginRequest())
-            const response = await authAPI.authenticate({username, password})
-            await dispatch(loginReceive(response))
+            const token = await authAPI.authenticate({username, password})
+
+            await dispatch(loginReceive(token))
+            await dispatch(meUser())
             await dispatch(setAuthentication(true))
             history.push('/')
         } catch (error) {
@@ -48,7 +51,29 @@ export const loginFetch = ({username, password}, history) => {
 export const logoutFetch = () => {
 
     return async (dispatch) => {
-        const response = await authAPI.logout()
-             dispatch(setAuthentication(false))
+        await authAPI.logout()
+        dispatch(setAuthentication(false))
+    }
+}
+
+export const userError = (error) => ({
+    type: actionType.USER_ERROR,
+    error
+})
+
+export const userReceive = (response) => ({
+    type: actionType.USER_RECEIVED,
+    data: response.data
+})
+
+export const meUser = () => {
+
+    return async (dispatch) => {
+        try {
+            const response = await userAPI.me()
+            dispatch(userReceive(response))
+        } catch (error) {
+            dispatch(userError(error))
+        }
     }
 }

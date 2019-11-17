@@ -8,8 +8,6 @@ import Product from "../../components/product/Product";
 class ProductContainer extends Component {
 
     componentDidMount() {
-
-        console.log(" params ===>>>>>",this.props.match.params.id )
         this.props.productFetch(this.props.match.params.id)
     }
 
@@ -33,7 +31,7 @@ class ProductContainer extends Component {
         } else if (product) {
             const renderProduct =
                 <>
-                 <Product product={product}/>
+                    <Product product={product}/>
 
                 </>
 

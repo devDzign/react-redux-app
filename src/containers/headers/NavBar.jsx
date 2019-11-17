@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setAuthentication} from "../../stores/actions/actions";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -26,11 +26,20 @@ class NavBar extends Component {
                         <NavLink className="nav-link" to="/login" activeClassName="active" exact>Login</NavLink>
                     </li>
                 </> :
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/logout">
-                        Logout
-                    </NavLink>
-                </li>
+            (this.props.user &&  <li className="nav-item dropdown">
+
+                    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                       aria-expanded="false">{this.props.user.username}</a>
+                    <div className="dropdown-menu" x-placement="bottom-start">
+                        <Link className="dropdown-item" to="/profile">profile</Link>
+
+                        <div className="dropdown-divider"></div>
+                        <NavLink className="dropdown-item" to="/logout">
+                            Logout
+                        </NavLink>
+                    </div>
+                </li>)
+
         )
     }
 
@@ -72,7 +81,8 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.rootAuthReducer
+        ...state.rootAuthReducer,
+        ...state.rootUserReducer
     }
 }
 

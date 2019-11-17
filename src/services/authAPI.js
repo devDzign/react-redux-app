@@ -24,6 +24,7 @@ function authenticate(credentials) {
             window.localStorage.setItem("authToken", token);
             // On prévient Axios qu'on a maintenant un header par défaut sur toutes nos futures requetes HTTP
             setAxiosToken(token);
+            return token
         });
 }
 
