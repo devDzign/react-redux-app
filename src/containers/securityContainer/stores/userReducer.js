@@ -9,9 +9,6 @@ const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.USER_RECEIVED:
-             if(action.data){
-                 console.log("user====>",action.data.email)
-             }
             return {
               ...state,
                 user: action.data

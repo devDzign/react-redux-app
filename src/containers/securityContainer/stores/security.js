@@ -2,13 +2,17 @@ import * as actionType from "./actionTypes";
 import authAPI from "../../../services/authAPI";
 import userAPI from "../../../services/usersAPI";
 
-export const setAuthentication = (isLoggedIn) => {
+export const setAuthentication = (isLoggedIn, token=null) => {
 
     return (dispatch) => {
         dispatch(
             {
                 type: actionType.SET_AUTHENTICATION,
-                isLoggedIn: isLoggedIn
+                data: {
+                    isLoggedIn: isLoggedIn,
+                    token:token
+                }
+
             }
         );
     }
@@ -25,8 +29,8 @@ export const loginError = (error) => ({
     error
 })
 
-export const loginReceive = (response) => ({
-    type: actionType.USER_RECEIVED
+export const loginReceive = (token) => ({
+    type: actionType.LOGIN_RECEIVED
 })
 
 
@@ -39,7 +43,7 @@ export const loginFetch = ({username, password}, history) => {
 
             await dispatch(loginReceive(token))
             await dispatch(meUser())
-            await dispatch(setAuthentication(true))
+            await dispatch(setAuthentication(true,token))
             history.push('/')
         } catch (error) {
             dispatch(loginError(error))
@@ -52,7 +56,7 @@ export const logoutFetch = () => {
 
     return async (dispatch) => {
         await authAPI.logout()
-        dispatch(setAuthentication(false))
+        dispatch(setAuthentication(false, null))
     }
 }
 
