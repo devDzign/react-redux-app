@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import {logoutFetch} from "../../stores/actions/actions";
+import {Redirect} from "react-router";
 
 class LogoutContainer extends Component
 {
@@ -8,14 +9,14 @@ class LogoutContainer extends Component
     {
         super(props)
         this.props.logoutFetch()
-        this.props.history.push("/")
+
     }
 
     render() {
 
         return (
             <>
-                <h1>Logout Page</h1>
+                <Redirect to="/" />
             </ >
         )
     }

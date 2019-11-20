@@ -1,10 +1,12 @@
-import * as actionType from '../store/actions/actionTypes'
-import {incrementActionCount} from "../store/actions/actions";
+import authAPI from '../services/authAPI'
+import {logoutFetch}  from '../stores/actions/actions'
 
 
-export const actionCounter = (store) => (next) => (action) => {
-    if (actionType.INCREMENT_ACTION8COUNT !== action.type) {
-        store.dispatch(incrementActionCount())
+export const tokenValid = (store) => (next) => (action) => {
+// si oui je lance un venement de deconnexion
+    if(!authAPI.isAuthenticated() && store.getState().rootAuthReducer.isAuth){
+        store.dispatch(logoutFetch())
     }
+
     next(action)
 }

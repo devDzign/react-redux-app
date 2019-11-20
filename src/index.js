@@ -9,6 +9,8 @@ import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './stores/reducers/rootReducer'
 
+import {tokenValid} from './middlewares/actionCountLogger'
+
 import App from './containers/App';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,6 +20,7 @@ const store = createStore(
     composeEnhancers(
         applyMiddleware(
             thunk,
+            tokenValid
 
         )
     )

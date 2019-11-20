@@ -24,9 +24,9 @@ export const loginRequest = () => (
     }
 )
 
-export const loginError = (error) => ({
+export const loginError = (errors) => ({
     type: actionType.LOGIN_ERROR,
-    error
+    errors: errors
 })
 
 export const loginReceive = (token) => ({
@@ -46,7 +46,9 @@ export const loginFetch = ({username, password}, history) => {
             await dispatch(setAuthentication(true,token))
             history.push('/')
         } catch (error) {
-            dispatch(loginError(error))
+            console.log("ERROR ACTION", error.response.data)
+
+            dispatch(loginError(error.response.data))
         }
     }
 }
@@ -57,12 +59,13 @@ export const logoutFetch = () => {
     return async (dispatch) => {
         await authAPI.logout()
         dispatch(setAuthentication(false, null))
+        dispatch(userReceive( {data: null}))
     }
 }
 
 export const userError = (error) => ({
     type: actionType.USER_ERROR,
-    error
+    error: error
 })
 
 export const userReceive = (response) => ({

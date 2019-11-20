@@ -14,7 +14,6 @@ const loginReducer = (state = initialState, action) => {
                 isFetching: true
             }
         case actionTypes.LOGIN_RECEIVED:
-            console.log("data ====> ", action.data)
             return {
               ...state,
                 isFetching: false
